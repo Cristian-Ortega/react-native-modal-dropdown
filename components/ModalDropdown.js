@@ -5,9 +5,9 @@
 'use strict';
 
 import React, {
-  Component,
+  Component
 } from 'react';
-
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Dimensions,
@@ -22,14 +22,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-const PropTypes = require('prop-types');
-
 const TOUCHABLE_ELEMENTS = ['TouchableHighlight', 'TouchableOpacity', 'TouchableWithoutFeedback', 'TouchableNativeFeedback'];
 
 export default class ModalDropdown extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
-    scrollEnabled: PropTypes.bool,
     defaultIndex: PropTypes.number,
     defaultValue: PropTypes.string,
     options: PropTypes.array,
@@ -56,7 +53,6 @@ export default class ModalDropdown extends Component {
 
   static defaultProps = {
     disabled: false,
-    scrollEnabled: true,
     defaultIndex: -1,
     defaultValue: 'Please select...',
     options: null,
@@ -188,7 +184,6 @@ export default class ModalDropdown extends Component {
       let animationType = this.props.animated ? 'fade' : 'none';
       return (
         <Modal animationType={animationType}
-               visible={true}
                transparent={true}
                onRequestClose={this._onRequestClose.bind(this)}
                supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}>
@@ -264,8 +259,7 @@ export default class ModalDropdown extends Component {
 
   _renderDropdown() {
     return (
-      <ListView scrollEnabled={this.props.scrollEnabled}
-                style={styles.list}
+      <ListView style={styles.list}
                 dataSource={this._dataSource}
                 renderRow={this._renderRow.bind(this)}
                 renderSeparator={this.props.renderSeparator || this._renderSeparator.bind(this)}
